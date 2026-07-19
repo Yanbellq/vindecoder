@@ -1,0 +1,52 @@
+.historyChip {
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 192px;
+  display: inline-flex;
+  align-items: center;
+	justify-content: center;
+}
+
+.historyChip:hover {
+  background-color: var(--bg-card);
+  border-color: var(--border-hover);
+  color: var(--text-main);
+}
+
+.iconWrapper {
+  position: relative;
+  width: 12px;
+  height: 12px;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
+}
+
+.iconVisible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.iconHidden {
+  opacity: 0;
+  transform: scale(0.7) rotate(-90deg);
+  pointer-events: none;
+}
+
+.vinText {
+	margin-left: 7px;
+}
