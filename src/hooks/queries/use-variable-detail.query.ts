@@ -14,7 +14,7 @@ export const getVariableDetailQueryOptions = (variableId: string) => ({
       listData = await queryClient.fetchQuery(getVariableListQueryOptions());
     }
 
-		const variables = listData.results;
+		const variables = listData!.results;
     const currentId = Number(variableId);
     const currentIndex = variables.findIndex((v) => v.ID === currentId);
 

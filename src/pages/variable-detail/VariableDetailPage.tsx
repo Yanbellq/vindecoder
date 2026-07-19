@@ -1,40 +1,30 @@
-import { Link, useParams } from 'react-router';
+import { Link } from 'react-router';
 import styles from './VariableDetailPage.module.css';
-import { useGetVariableDetail } from '@/hooks/queries';
 import { ROUTES } from '@/constants';
-import type { IVariable } from '@/types';
 import { CheckCircle, Copy } from 'lucide-react';
-import { useCopyToClipboard } from 'usehooks-ts';
-import { toast } from 'sonner';
-import { useState } from 'react';
-
-interface IDataProps {
-  variable: IVariable;
-  prevVariable: IVariable;
-  nextVariable: IVariable;
-}
+import { useVariableDetail } from '@/hooks';
 
 export default function VariableDetailPage() {
-  const { variableId } = useParams<{ variableId: string }>();
-  const { data }: { data: IDataProps } = useGetVariableDetail(variableId!);
+  const {
+		variableId,
+		data,
+		isLoading,
+		isError,
+		variable,
+		prevVariable,
+		nextVariable,
+		isCopied,
 
-  if (!data) return null;
-  const { variable, prevVariable, nextVariable } = data;
+		handleCopy,
+	} = useVariableDetail();
 
-  const [isCopied, setIsCopied] = useState(false);
-  const [_, copy] = useCopyToClipboard();
+  if (isLoading) {
+    return <div>Loading variable details...</div>;
+  }
 
-  const handleCopy = (text: string) => () => {
-    copy(text)
-      .then(() => {
-        setIsCopied(true);
-        toast.success('Copied!', { description: text });
-        setTimeout(() => setIsCopied(false), 4000);
-      })
-      .catch((error) => {
-        toast.error('Failed to copy!', { description: error });
-      });
-  };
+  if (isError || !data) {
+    return <div>Variable not found or error occurred.</div>;
+  }
 
   return (
     <>
