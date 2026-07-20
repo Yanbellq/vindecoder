@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "/api-hotline/*"
-  to = "https://hotline.finance/:splat"
+  to = "https://hotline.finance/api/:splat"
   status = 200
   force = true
 

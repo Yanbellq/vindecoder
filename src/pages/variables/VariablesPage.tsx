@@ -1,10 +1,38 @@
 import styles from './VariablesPage.module.css';
 import { VariableCard } from '@/components/ui/variable-card/VariableCard';
 import Input from '@/components/ui/input/Input';
-import Button from '@/components/ui/button/Button';
+import ButtonComponent from '@/components/ui/button/Button';
 import { useVariables } from '@/hooks';
+import { ArrowBigLeftDash, ArrowBigRightDash } from 'lucide-react';
+import { useMediaQuery } from 'usehooks-ts';
+
+interface IButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
+  disabled: boolean;
+  matches: boolean;
+}
+
+export const Button = ({
+  children,
+  onClick,
+  disabled,
+  matches,
+}: IButtonProps) => {
+  return (
+    <ButtonComponent
+      variant='outline'
+      onClick={onClick}
+      disabled={disabled}
+      style={matches ? {} : { padding: '0.55rem 1rem' }}
+    >
+      {children}
+    </ButtonComponent>
+  );
+};
 
 export default function VariablesPage() {
+  const matches = useMediaQuery('(min-width: 768px)');
   const {
     currentVariables,
     currentPage,
@@ -49,19 +77,19 @@ export default function VariablesPage() {
         {currentVariables.length > 0 && (
           <div className={styles.pagination}>
             <Button
-              variant='outline'
               onClick={() => setCurrentPage(1)}
               disabled={currentPage === 1}
+              matches={matches}
             >
               1
             </Button>
 
             <Button
-              variant='outline'
               onClick={handlePrevPage}
               disabled={currentPage === 1}
+              matches={matches}
             >
-              Previous
+              <ArrowBigLeftDash size={23} />
             </Button>
 
             <span className={styles.pagInfo}>
@@ -69,17 +97,17 @@ export default function VariablesPage() {
             </span>
 
             <Button
-              variant='outline'
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
+              matches={matches}
             >
-              Next
+              <ArrowBigRightDash size={23} />
             </Button>
 
             <Button
-              variant='outline'
               onClick={() => setCurrentPage(totalPages)}
               disabled={currentPage === totalPages}
+              matches={matches}
             >
               {totalPages}
             </Button>
