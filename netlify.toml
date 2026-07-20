@@ -1,9 +1,12 @@
+[build]
+  publish = "dist"
+  command = "bun run build"
+
 [[redirects]]
   from = "/api-hotline/*"
   to = "https://hotline.finance/:splat"
   status = 200
   force = true
-  headers = { X-From = "Netlify Edge" }
 
 [[redirects]]
   from = "/*"
