@@ -89,7 +89,7 @@ export default function VariablesPage() {
               disabled={currentPage === 1}
               matches={matches}
             >
-              <ArrowBigLeftDash size={matches ? 23 : 20} />
+              <ArrowBigLeftDash size={matches ? 23 : 21} />
             </Button>
 
             <span className={styles.pagInfo}>
@@ -101,7 +101,7 @@ export default function VariablesPage() {
               disabled={currentPage === totalPages}
               matches={matches}
             >
-              <ArrowBigRightDash size={matches ? 23 : 20} />
+              <ArrowBigRightDash size={matches ? 23 : 21} />
             </Button>
 
             <Button
