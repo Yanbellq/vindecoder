@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/api-hotline/*"
+  to = "https://hotline.finance/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
