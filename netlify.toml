@@ -3,6 +3,7 @@
   to = "https://hotline.finance/:splat"
   status = 200
   force = true
+  headers = { X-From = "Netlify Edge" }
 
 [[redirects]]
   from = "/*"
