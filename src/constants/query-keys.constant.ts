@@ -1,4 +1,5 @@
 export const QUERY_KEYS = {
 	VARIABLES: 'variables',
-	DECODE: 'vin_decode',
+	VIN_DECODE: 'vin_decode',
+	PLATE_DECODE: 'plate_decode',
 }

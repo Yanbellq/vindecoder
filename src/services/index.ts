@@ -1,1 +1,2 @@
-export * from './vehicle.service';
+export * from './vin.service';
+export * from './plate.service';

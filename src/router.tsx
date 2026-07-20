@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 import Layout from './components/layout/Layout';
-import HomePage from './pages/home/HomePage';
+import DecoderPage from './pages/decoder/DecoderPage';
 import VariablesPage from './pages/variables/VariablesPage';
 import VariableDetailPage from './pages/variable-detail/VariableDetailPage';
 import { ROUTES } from './constants';
@@ -11,6 +11,8 @@ import {
   getVariableDetailQueryOptions,
   getVariableListQueryOptions,
 } from './hooks/queries';
+import PlatePage from './pages/plate/PlatePage';
+import HomePage from './pages/home/HomePage';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ export const router = createBrowserRouter([
     errorElement: <RouteError />,
     children: [
       { index: true, Component: HomePage },
+      { path: ROUTES.DECODE, Component: DecoderPage },
+      { path: ROUTES.PLATE, Component: PlatePage },
       {
         path: ROUTES.VARIABLES,
         Component: VariablesPage,

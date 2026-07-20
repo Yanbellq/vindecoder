@@ -1,6 +1,7 @@
 import { NavLink, Outlet, useNavigation } from 'react-router';
 import styles from './Layout.module.css';
 import { ROUTES } from '@/constants';
+import { Nav_Config } from '@/configs';
 
 export default function Layout() {
   const currentYear = new Date().getFullYear();
@@ -15,22 +16,17 @@ export default function Layout() {
             VIN<span>DECODER</span>
           </NavLink>
           <nav className={styles.nav}>
-            <NavLink
-              to={ROUTES.HOME}
-              className={({ isActive }) =>
-                `${styles.link} ${isActive ? styles.activeLink : ''}`
-              }
-            >
-              Decoder
-            </NavLink>
-            <NavLink
-              to={ROUTES.VARIABLES}
-              className={({ isActive }) =>
-                `${styles.link} ${isActive ? styles.activeLink : ''}`
-              }
-            >
-              Variables
-            </NavLink>
+            {Nav_Config.map((m, idx) => (
+              <NavLink
+                key={idx}
+                to={m.path}
+                className={({ isActive }) =>
+                  `${styles.link} ${isActive ? styles.activeLink : ''}`
+                }
+              >
+                {m.label}
+              </NavLink>
+            ))}
           </nav>
         </div>
       </header>
@@ -42,7 +38,8 @@ export default function Layout() {
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <p className={styles.footerText}>
-            &copy; {currentYear} VIN DECODER. Made by Yanbellq. Powered by NHTSA vPIC API.
+            &copy; {currentYear} VIN DECODER. Made by Yanbellq. Powered by NHTSA
+            vPIC API.
           </p>
           <div className={styles.footerLinks}>
             <a

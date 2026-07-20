@@ -1,10 +1,10 @@
 import { QUERY_KEYS } from "@/constants";
-import { vehicleService } from "@/services";
+import { vinService } from "@/services";
 import { useQuery } from "@tanstack/react-query";
 
 export const getVariableListQueryOptions = () => ({
   queryKey: [QUERY_KEYS.VARIABLES],
-  queryFn: () => vehicleService.getVariablesList(),
+  queryFn: () => vinService.getVariablesList(),
 });
 
 export const useGetVariableList = () => {

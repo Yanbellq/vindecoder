@@ -1,5 +1,7 @@
 import axios from 'axios';
 
-export const api = axios.create({
-  baseURL: import.meta.env.VITE_PUBLIC_API_URL,
+export const nhtsa = axios.create({
+  baseURL: import.meta.env.VITE_PUBLIC_NHTSA_API_URL,
 });
+
+export const hotline = axios.create({});

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { useLocalStorage } from 'usehooks-ts';
-import { getDecodeQueryOption, useGetDecode } from './queries';
-import { HISTORY_KEY } from '@/constants';
+import { getVinDecodeQueryOption, useGetVinDecode } from './queries';
+import { VIN_HISTORY_KEY } from '@/constants';
 import { queryClient } from '@/lib';
 
 export function useDecodeVin() {
@@ -10,9 +10,9 @@ export function useDecodeVin() {
   const [targetVin, setTargetVin] = useState('');
   const [validationError, setValidationError] = useState<string | null>(null);
 
-  const [history, setHistory] = useLocalStorage<string[]>(HISTORY_KEY, []);
+  const [history, setHistory] = useLocalStorage<string[]>(VIN_HISTORY_KEY, []);
 
-  const { data, isFetching } = useGetDecode(targetVin);
+  const { data, isFetching } = useGetVinDecode(targetVin);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.toUpperCase();
@@ -39,7 +39,7 @@ export function useDecodeVin() {
     setTargetVin(trimmedVin);
 
     try {
-      await queryClient.ensureQueryData(getDecodeQueryOption(trimmedVin));
+      await queryClient.ensureQueryData(getVinDecodeQueryOption(trimmedVin));
 
       toast.success('VIN decoded successfully');
 

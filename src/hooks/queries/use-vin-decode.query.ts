@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { vehicleService } from '@/services';
+import { vinService } from '@/services';
 import { QUERY_KEYS } from '@/constants';
 
-export const getDecodeQueryOption = (vin: string) => ({
-  queryKey: [QUERY_KEYS.DECODE, vin],
+export const getVinDecodeQueryOption = (vin: string) => ({
+  queryKey: [QUERY_KEYS.VIN_DECODE, vin],
   queryFn: async () => {
-    const response = await vehicleService.getDecode(vin);
+    const response = await vinService.getDecode(vin);
     return (response.results || []).filter(
       (item) => item.Value && item.Value.trim() !== '',
     );
@@ -15,7 +15,7 @@ export const getDecodeQueryOption = (vin: string) => ({
   gcTime: 1000 * 60 * 30,
 });
 
-export const useGetDecode = (vin: string) => {
+export const useGetVinDecode = (vin: string) => {
   const trimmedVin = vin.trim().toUpperCase();
-  return useQuery(getDecodeQueryOption(trimmedVin))
+  return useQuery(getVinDecodeQueryOption(trimmedVin))
 }
